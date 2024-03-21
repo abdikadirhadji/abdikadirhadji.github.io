@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Tracking</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+</head>
+<body>
+    <table id="salesTable">
+        <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Selling Price</th>
+            <th>Expenses</th>
+            <th>Profit</th>
+        </tr>
+        <tr>
+            <td>2023-11-09</td>
+            <td>Product A</td>
+            <td>10</td>
+            <td>100</td>
+            <td>50</td>
+            <td>50</td>
+        </tr>
+        <!-- Add more rows if needed -->
+    </table>
+
+    <button onclick="downloadSalesExcel()">Download Excel</button>
+
+    <script>
+        function downloadSalesExcel() {
+            const table = document.getElementById("salesTable");
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Sales Report");
+            XLSX.writeFile(wb, "sales_report.xlsx");
+        }
+    </script>
+</body>
+</html>
